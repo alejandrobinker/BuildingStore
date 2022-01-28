@@ -1,0 +1,12 @@
+.input-counter{
+    width: 2.5rem;
+}
+
+.btn-counter{
+    border-radius: 50%;
+}
+
+.btn:active, .btn:focus {
+    box-shadow: none;
+    outline: none;
+}
