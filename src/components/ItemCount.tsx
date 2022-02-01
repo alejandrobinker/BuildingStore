@@ -12,7 +12,7 @@ function ItemListCount(props: any) {
                     <FormControl className="input-counter" value={props.value} disabled />
                     <Button className="btn-counter mx-1" onClick={props.value < props.stock ? props.suma : null }>+</Button>
                 </div>
-                <Button variant="primary">Comprar</Button>
+                <Button onClick={props.action} variant="primary">Comprar</Button>
             </Card.Body>
         </Card>
     )
