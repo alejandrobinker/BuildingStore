@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Card, Button } from "react-bootstrap"
 
 interface ItemProp {
     title: string
@@ -7,7 +7,7 @@ interface ItemProp {
     img: string
 }
 
-function Item(item: ItemProp) {
+function ItemDetail(item: ItemProp) {
 
     return (
         <Card style={{ width: '18rem' }}>
@@ -20,7 +20,8 @@ function Item(item: ItemProp) {
                 <Card.Text>
                     {`$${item.precio}`}
                 </Card.Text>
+                <Button>Agregar al carrito</Button>
             </Card.Body>
         </Card>
     )
-} export default Item
+} export default ItemDetail

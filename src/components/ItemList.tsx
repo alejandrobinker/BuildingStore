@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react"
-import { getItems } from "../services/getItem"
+import { getItems } from "../services/products"
 import Item from "./Item"
-
+import Producto from "../dtos/productoDTO"
 
 function ItemList() {
 
-    const [items, setItems] = useState<any[]>([])
+    const [items, setItems] = useState<Producto[]>([])
+
+    async function fetchData() {
+        setItems(await getItems())
+    }
 
     useEffect(() => {
-        getItems().then(function (products: any) {
-            setItems(products)
-        })
+        fetchData()
     }, [])
-
 
     return (
         <div className="products">
-            {items.map(item => (
-                <Item key={item.id} title={item.title} descripcion={item.descripcion} precio={item.precio} img={item.img} />
-            )
-            )}
+            {items.length > 0 ?
+                items.map(item => (
+                    <Item key={item.id} title={item.title} descripcion={item.descripcion} precio={item.precio} img={item.img} />
+                )
+                ) : 'Cargando productos...'}
         </div>
     )
 } export default ItemList

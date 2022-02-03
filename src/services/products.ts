@@ -1,3 +1,5 @@
+import Producto from "../dtos/productoDTO"
+
 const products = [
     {
         id: 1,
@@ -16,11 +18,10 @@ const products = [
 ]
 
 
-const promise = new Promise<any[]>((resolve, reject) => {
+const promise = new Promise<Producto[]>((resolve, reject) => {
     setTimeout(() => {
         resolve(products)
-    }, 2000)
-
+    },2000)
 })
 
 function getItems() {
