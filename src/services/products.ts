@@ -6,14 +6,14 @@ const products = [
         title: 'Ladrillo',
         descripcion: 'Ladrillo hueco 18 x 18 x 33 cm',
         precio: 100,
-        img: './img/ladrillo-hueco.jpg'
+        img: '../img/ladrillo-hueco.jpg'
     },
     {
         id: 2,
         title: 'Ladrillo',
         descripcion: 'Ladrillo hueco 18 x 18 x 33 cm',
         precio: 200,
-        img: './img/ladrillo-hueco.jpg'
+        img: '../img/ladrillo-hueco.jpg'
     },
 ]
 

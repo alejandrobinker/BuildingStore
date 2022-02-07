@@ -22,9 +22,8 @@ function ItemListContainer(props: any) {
     return (
         <div className="products-container">
             <h1>{props.title}</h1>
-            <ItemListCount value={cantidad} stock={5} resta={handleResta} suma={handleSuma} action={onAdd} />
+            {/*<ItemListCount value={cantidad} stock={5} resta={handleResta} suma={handleSuma} action={onAdd} />*/}
             <ItemList />
-            <ItemDetailContainer />
         </div>
     )
 }

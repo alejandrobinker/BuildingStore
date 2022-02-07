@@ -2,19 +2,20 @@ import ItemDetail from "./ItemDetail"
 import { useState, useEffect } from "react"
 import { getItems } from "../services/products"
 import Producto from "../dtos/productoDTO"
+import { useParams } from "react-router-dom"
 
 function ItemDetailContainer() {
 
     const [item, setItem] = useState<Producto>()
+    const { productId }: any = useParams();
 
     async function fetchData() {
         const data = await getItems()
-        const product = data.find((producto) => producto.id === 2)
+        const product = data.find((producto) => producto.id === parseInt(productId))
         setItem(product)
     }
     useEffect(() => {
         fetchData()
-        console.log(item)
     }, [])
 
     return (
