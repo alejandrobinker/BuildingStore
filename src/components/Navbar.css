@@ -1,0 +1,7 @@
+.dropdown-menu[data-bs-popper] {
+    margin-top: 0;
+}
+
+.nav-link:after {
+    display: none;
+}

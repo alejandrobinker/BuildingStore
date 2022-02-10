@@ -1,0 +1,28 @@
+.itemDetail {
+    margin: auto;
+    width: 60%;
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
+}
+
+.aside {
+    border: 1px solid rgb(0, 0, 0, .1);
+    border-radius: 0.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.detail-precio {
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.detail-descripcion{
+    font-size: 1.2rem;
+}
+
+.add-btn{
+    background-color: coral;
+}

@@ -1,19 +1,35 @@
 import { Card, Button, FormControl } from "react-bootstrap"
+import { useState } from "react";
 import './ItemCount.css'
 
 function ItemListCount(props: any) {
 
+    const [cantidad, setCantidad] = useState(1);
+
+    const handleQty=()=>{
+        props.action(cantidad)
+    }
+
+    const handleResta = () => {
+        if (cantidad > 1) {
+            setCantidad(cantidad - 1)
+        }
+    }
+    const handleSuma = () => {
+        if (cantidad < props.stock) {
+            setCantidad(cantidad + 1)
+        }
+    }
+
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>Producto (stock: {props.stock})</Card.Title>
-                <div className="d-flex mb-3">
-                    <Button className="btn-counter mx-1" onClick={props.resta}>-</Button>
-                    <FormControl className="input-counter" value={props.value} disabled />
-                    <Button className="btn-counter mx-1" onClick={props.value < props.stock ? props.suma : null }>+</Button>
-                </div>
-                <Button onClick={props.action} variant="primary">Comprar</Button>
-            </Card.Body>
-        </Card>
+        <>
+            <p>Producto (stock: {props.stock})</p>
+            <div className="d-flex mb-3">
+                <Button className="btn-counter mx-1" onClick={handleResta}>-</Button>
+                <FormControl className="input-counter" value={cantidad} disabled />
+                <Button className="btn-counter mx-1" onClick={handleSuma}>+</Button>
+            </div>
+            <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button>
+        </>
     )
 } export default ItemListCount

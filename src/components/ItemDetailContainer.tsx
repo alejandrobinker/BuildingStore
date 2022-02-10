@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { getItems } from "../services/products"
 import Producto from "../dtos/productoDTO"
 import { useParams } from "react-router-dom"
+import "./ItemDetailContainer.css"
 
 function ItemDetailContainer() {
 

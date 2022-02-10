@@ -1,10 +1,9 @@
 import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
+import "./Item.css"
 interface ItemProp {
     id: number
     title: string
-    descripcion: string
     precio: number
     img: string
 }
@@ -12,19 +11,17 @@ interface ItemProp {
 function Item(item: ItemProp) {
 
     return (
-        <Link to={`producto/${item.id}`}>
-            <Card style={{ width: '18rem' }}>
+
+        <Card style={{ width: '18rem' }}>
+            <Link to={`/producto/${item.id}`}>
                 <Card.Img variant="top" src={item.img} />
                 <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                        {item.descripcion}
-                    </Card.Text>
-                    <Card.Text>
+                    <Card.Text className="precio">
                         {`$${item.precio}`}
                     </Card.Text>
                 </Card.Body>
-            </Card>
-        </Link>
+            </Link>
+        </Card>
     )
 } export default Item
