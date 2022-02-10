@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { getItems } from "../services/products"
 import Producto from "../dtos/productoDTO"
 import { useParams } from "react-router-dom"
+import Spinner from 'react-bootstrap/Spinner'
 import "./ItemDetailContainer.css"
 
 function ItemDetailContainer() {
@@ -21,7 +22,12 @@ function ItemDetailContainer() {
 
     return (
         <div className="product-detail">
-            {item !== undefined ? <ItemDetail key={item.id} title={item.title} descripcion={item.descripcion} precio={item.precio} img={item.img} /> : 'Cargando detalle de producto...'}
+            {item !== undefined ? <ItemDetail key={item.id} title={item.title} descripcion={item.descripcion} precio={item.precio} img={item.img} /> :
+                <><p>Cargando detalle de producto...</p>
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden"></span>
+                    </Spinner>
+                </>}
         </div>
     )
 } export default ItemDetailContainer

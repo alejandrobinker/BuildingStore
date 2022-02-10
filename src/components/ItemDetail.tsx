@@ -4,6 +4,8 @@ import credito from "../assets/credito.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import "./ItemDetail.css"
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 interface ItemProp {
     title: string
     descripcion: string
@@ -13,7 +15,7 @@ interface ItemProp {
 
 function ItemDetail(item: ItemProp) {
 
-    const [compra, setCompra] = useState({})
+    const [compra, setCompra] = useState(0)
 
     const onAdd = (itemCount: number) => {
         setCompra(itemCount)
@@ -37,7 +39,7 @@ function ItemDetail(item: ItemProp) {
                     <img src={credito} alt="" />
                 </div>
                 <div className="buy-btn">
-                    <ItemCount stock={5} action={onAdd} />
+                    {compra === 0 ? <ItemCount stock={5} action={onAdd} /> : <Link to="/cart"><Button variant="danger w-100">Ir al carrito</Button></Link>}
                 </div>
             </div>
         </div>
