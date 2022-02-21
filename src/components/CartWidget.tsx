@@ -7,7 +7,7 @@ function CartWidget(props: any) {
     return (
         <>
             <Link to="/cart"><FontAwesomeIcon icon={faShoppingCart} size='lg' />
-                <span className="badge">{props.cantidad}</span>
+                <span className="badge">{props.cantidad === 0 ? null : props.cantidad}</span>
             </Link>
         </>
     )

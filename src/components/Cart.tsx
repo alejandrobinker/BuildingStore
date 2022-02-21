@@ -7,9 +7,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 function Cart() {
 
     let i = 0
-    const { cart } = useContext(CartContext)
-    const { removeFromCart } = useContext(CartContext)
-    const { cartTotal } = useContext(CartContext)
+    const { cart, removeFromCart, cartTotal } = useContext(CartContext)
+    
     return (
         <>
             {cart.length !== 0 ?

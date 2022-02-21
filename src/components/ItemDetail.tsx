@@ -13,12 +13,10 @@ function ItemDetail({ item }: any) {
 
     const [isBuying, setIsBuying] = useState(true)
     const { addToCart } = useContext(CartContext)
-    const { cart } = useContext(CartContext)
 
     const onAdd = (cantidad: number) => {
         addToCart(cantidad, item)
         setIsBuying(false)
-        console.log(cart)
     }
 
     return (
