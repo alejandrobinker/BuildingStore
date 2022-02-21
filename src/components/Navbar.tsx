@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useContext } from "react"
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { CartContext } from "./CartContext"
 import CartWidget from "./CartWidget"
 import "./Navbar.css"
 
 function HeaderNavbar() {
 
-    const [show, setShow] = useState(false)
+    const { cartQty } = useContext(CartContext)
 
     return (
         <Navbar className="px-3 navbar-custom" collapseOnSelect expand="lg" bg="light" variant="light" fixed="top" >
@@ -17,16 +18,13 @@ function HeaderNavbar() {
                     <Nav.Link href="#features">Nosotros</Nav.Link>
                     <NavDropdown
                         title="Productos"
-                        show={show}
-                        onMouseEnter={() => setShow(!show)}
-                        onMouseLeave={() => setShow(!show)}
                     >
                         <NavDropdown.Item as={Link} to="/category/construccion">Construcción</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/category/plomeria">Plomería</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="#pricing">Contacto</Nav.Link>
                     <Nav.Link className="cart-link">
-                        <CartWidget /><span className="badge">0</span>
+                        <CartWidget cantidad={cartQty()} />
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

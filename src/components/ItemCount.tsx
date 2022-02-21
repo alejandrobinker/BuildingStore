@@ -1,4 +1,4 @@
-import { Card, Button, FormControl } from "react-bootstrap"
+import { Button, FormControl } from "react-bootstrap"
 import { useState } from "react";
 import './ItemCount.css'
 
@@ -6,7 +6,7 @@ function ItemListCount(props: any) {
 
     const [cantidad, setCantidad] = useState(1);
 
-    const handleQty=()=>{
+    const handleQty = () => {
         props.action(cantidad)
     }
 
@@ -25,9 +25,9 @@ function ItemListCount(props: any) {
         <>
             <p>Producto (stock: {props.stock})</p>
             <div className="d-flex mb-3">
-                <Button className="btn-counter mx-1" onClick={handleResta}>-</Button>
+                <Button className="btn-counter btn-danger mx-1" onClick={handleResta}>-</Button>
                 <FormControl className="input-counter" value={cantidad} disabled />
-                <Button className="btn-counter mx-1" onClick={handleSuma}>+</Button>
+                <Button className="btn-counter btn-danger mx-1" onClick={handleSuma}>+</Button>
             </div>
             <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button>
         </>

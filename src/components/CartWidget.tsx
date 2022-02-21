@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
-function CartWidget() {
+function CartWidget(props: any) {
+
     return (
-        <FontAwesomeIcon icon={faShoppingCart} size='lg' />
+        <>
+            <Link to="/cart"><FontAwesomeIcon icon={faShoppingCart} size='lg' />
+                <span className="badge">{props.cantidad}</span>
+            </Link>
+        </>
     )
 }
 export default CartWidget

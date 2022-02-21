@@ -1,4 +1,4 @@
-import Producto from "../dtos/productoDTO"
+import Producto from "../interfaces/productoDTO"
 
 const products = [
     {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Producto from "../dtos/productoDTO";
+import Producto from "../interfaces/productoDTO";
 import { getItems } from "../services/products";
 import ProductList from "./ProductList";
 

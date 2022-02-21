@@ -1,25 +1,24 @@
 import ItemCount from "./ItemCount";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import credito from "../assets/credito.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import "./ItemDetail.css"
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-interface ItemProp {
-    title: string
-    descripcion: string
-    precio: number
-    img: string
-}
+import { CartContext } from "./CartContext";
 
-function ItemDetail(item: ItemProp) {
 
-    const [compra, setCompra] = useState(0)
+function ItemDetail({ item }: any) {
 
-    const onAdd = (itemCount: number) => {
-        setCompra(itemCount)
-        console.log(itemCount);
+    const [isBuying, setIsBuying] = useState(true)
+    const { addToCart } = useContext(CartContext)
+    const { cart } = useContext(CartContext)
+
+    const onAdd = (cantidad: number) => {
+        addToCart(cantidad, item)
+        setIsBuying(false)
+        console.log(cart)
     }
 
     return (
@@ -39,7 +38,7 @@ function ItemDetail(item: ItemProp) {
                     <img src={credito} alt="" />
                 </div>
                 <div className="buy-btn">
-                    {compra === 0 ? <ItemCount stock={5} action={onAdd} /> : <Link to="/cart"><Button variant="danger w-100">Ir al carrito</Button></Link>}
+                    {isBuying ? <ItemCount stock={5} action={onAdd} /> : <Link to="/cart"><Button variant="danger w-100">Ir al carrito</Button></Link>}
                 </div>
             </div>
         </div>
