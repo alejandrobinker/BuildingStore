@@ -36,7 +36,7 @@ function ItemDetail({ item }: any) {
                     <img src={credito} alt="" />
                 </div>
                 <div className="buy-btn">
-                    {isBuying ? <ItemCount stock={5} action={onAdd} /> : <Link to="/cart"><Button variant="danger w-100">Ir al carrito</Button></Link>}
+                    {isBuying ? <ItemCount stock={item.stock} action={onAdd} /> : <Link to="/cart"><Button variant="danger w-100">Ir al carrito</Button></Link>}
                 </div>
             </div>
         </div>

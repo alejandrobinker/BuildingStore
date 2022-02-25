@@ -1,8 +1,9 @@
 export default interface Producto {
-    id: number
+    id: string
     title: string
     descripcion: string
     precio: number
     img: string
     categoria: string
+    stock: number
 }

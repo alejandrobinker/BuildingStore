@@ -1,43 +1,45 @@
-import Producto from "../interfaces/productoDTO"
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { db } from "../firebase"
 
-const products = [
-    {
-        id: 1,
-        title: 'Ladrillo hueco 18 x 18 x 33 cm',
-        descripcion: 'Ladrillo hueco de 18 x 18 x 33 cm, 12 agujeros. Peso: 6,8 kg. Venta por unidad.',
-        precio: 150,
-        img: '../img/ladrillo-hueco.jpg',
-        categoria: 'construccion'
-    },
-    {
-        id: 2,
-        title: 'Ladrillo Retak 60 x 25 x 15 cm',
-        descripcion: 'Descripcion',
-        precio: 200,
-        img: '../img/ladrillo-retak.jpg',
-        categoria: 'construccion'
-    },
-    {
-        id: 3,
-        title: 'Tanque de Reserva 1100 L',
-        descripcion: 'Descripcion',
-        precio: 200,
-        img: '../img/tanque-1.jpg',
-        categoria: 'plomeria'
-    },
-]
-
-
-const promise = new Promise<Producto[]>((resolve, reject) => {
-    setTimeout(() => {
-        resolve(products)
-    },2000)
-})
-
-function getItems() {
-    return promise
+export async function getAllItems(): Promise<any[]> {
+    try {
+        const collectionRef = collection(db, "productos")
+        const snapshot = await getDocs(collectionRef)
+        const products = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        return products
+    } catch (error: any) {
+        throw error
+    }
 }
 
-export {
-    getItems
+export async function getItemsByCategory(categoryName: string): Promise<any[]> {
+    try {
+        const collectionRef = collection(db, "productos")
+        const categoryQuery = query(collectionRef, where("categoria", "==", categoryName))
+        const snapshot = await getDocs(categoryQuery)
+        const products = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        return products
+    } catch (error: any) {
+        throw error
+    }
+}
+
+export async function getItemById(productId: string): Promise<any> {
+    try {
+        const itemRef = doc(db, "productos", productId)
+        const snapshot = await getDoc(itemRef)
+        const product = { id: snapshot.id, ...snapshot.data() }
+        return product
+    } catch (error: any) {
+        throw error
+    }
+}
+
+export async function postItem(producto: any) {
+    try {
+        const collectionRef = collection(db, "productos")
+        await addDoc(collectionRef, producto)
+    } catch (error: any) {
+        throw error
+    }
 }
