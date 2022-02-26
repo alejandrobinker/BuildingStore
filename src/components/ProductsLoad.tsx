@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Alert, Button, Form, Spinner } from "react-bootstrap"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { postItem } from "../services/products"
 import "./ProductsLoad.css"
@@ -10,34 +10,42 @@ function ProductsLoad() {
         title: "",
         categoria: "",
         descripcion: "",
-        precio: 0,
-        stock: 0
+        precio: "",
+        stock: ""
     }
 
     const [fields, setFields] = useState(initialFields)
     const [productImage, setProductImage] = useState<any>()
     const [error, setError] = useState(false)
+    const [isAdding, setIsAdding] = useState(false)
 
     const handleChange = (e: any) => {
+        setError(false)
         let { name, value } = e.target
-        setFields(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-        console.log(fields)
+        if (name !== "stock" && name !== "precio") {
+            setFields(prevState => ({
+                ...prevState,
+                [name]: value
+            }))
+        } else {
+            setFields(prevState => ({
+                ...prevState,
+                [name]: +value
+            }))
+        }
     }
 
     const handleImgChange = (e: any) => {
         setProductImage(e.target.files[0])
-        console.log(productImage)
     }
 
     const postProduct = async () => {
         setError(false)
-        if (fields.title === "" || fields.categoria === "" || fields.descripcion === "" || fields.precio <= 0 || fields.stock <= 0) {
+        if (fields.title === "" || fields.categoria === "" || fields.descripcion === "" || +fields.precio <= 0 || +fields.stock <= 0) {
             setError(true)
             return
         }
+        setIsAdding(true)
 
         let img = "https://via.placeholder.com/600"
 
@@ -53,19 +61,22 @@ function ProductsLoad() {
             ...fields,
             img: img
         }
-        console.log(uploadItem)
+
         await postItem(uploadItem)
+        setIsAdding(false)
+        setFields(initialFields)
     }
 
     return (
         <div className="productsLoad-container px-5">
             <Form>
+                {error && <Alert variant="danger">Datos inválidos</Alert>}
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="title">Titulo</Form.Label>
-                    <Form.Control id="title" name="title" onChange={handleChange} />
+                    <Form.Control id="title" name="title" onChange={handleChange} value={fields.title} />
                 </Form.Group>
-                <Form.Group controlId="formBasicSelect">
-                    <Form.Label>Select Norm Type</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicSelect">
+                    <Form.Label>Seleccioná una categoría</Form.Label>
                     <Form.Control
                         as="select"
                         name="categoria"
@@ -79,22 +90,24 @@ function ProductsLoad() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="descripcion">Descripción</Form.Label>
-                    <Form.Control id="descripcion" name="descripcion" as="textarea" rows={3} onChange={handleChange} />
+                    <Form.Control id="descripcion" name="descripcion" as="textarea" rows={3} onChange={handleChange} value={fields.descripcion} />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="img">Default file input example</Form.Label>
+                    <Form.Label htmlFor="img">Imagen</Form.Label>
                     <Form.Control id="img" name="img" type="file" onChange={handleImgChange} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="precio">Precio</Form.Label>
-                    <Form.Control id="precio" name="precio" onChange={handleChange} />
+                    <Form.Control type="number" id="precio" name="precio" onChange={handleChange} value={fields.precio} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="precio">Stock</Form.Label>
-                    <Form.Control id="stock" name="stock" onChange={handleChange} />
+                    <Form.Control type="number" id="stock" name="stock" onChange={handleChange} value={fields.stock} />
                 </Form.Group>
-                <Button variant="primary" onClick={postProduct}>
-                    Submit
+                <Button variant={isAdding ? "success" : "danger"} onClick={postProduct}>
+                    {isAdding ? <div>Guardando... <Spinner animation="border" role="status">
+                        <span className="visually-hidden"></span>
+                    </Spinner></div> : "Agregar"}
                 </Button>
             </Form>
         </div>

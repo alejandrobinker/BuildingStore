@@ -12,9 +12,9 @@ function Item(item: ItemProp) {
 
     return (
 
-        <Card style={{ width: '18rem' }}>
+        <Card className="m-3" style={{ width: '18rem' }}>
             <Link to={`/producto/${item.id}`}>
-                <Card.Img variant="top" src={item.img} />
+                <Card.Img className="card-custom" variant="top" src={item.img} />
                 <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Text className="precio">

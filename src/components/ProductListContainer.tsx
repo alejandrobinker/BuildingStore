@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Producto from "../interfaces/productoDTO";
 import { getAllItems, getItemsByCategory } from "../services/products";
 import ProductList from "./ProductList";
+import "./ProductListContainer.css"
 
 function ProductListContainer() {
     const [items, setItems] = useState<Producto[]>([])
@@ -43,18 +44,22 @@ function ProductListContainer() {
         fetchData()
         handleTitle()
     }, [categoryName])
-    
+
     return (
-        <div className="products-container pt-5">
-            {loaded ?
-                <>
-                    <h1>{title}</h1> <ProductList items={items} />
-                </> :
-                <>
-                <p>Cargando productos...</p>
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden"></span>
-                    </Spinner></>}
+        <div className="products-container row">
+            <div className="col-2"></div>
+            <div className="col-10">
+                <h1 className="ms-3">{title}</h1>
+                {loaded ?
+                    <>
+                        <ProductList items={items} />
+                    </> :
+                    <>
+                        <p>Cargando productos...</p>
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden"></span>
+                        </Spinner></>}
+            </div>
         </div>
     )
 }

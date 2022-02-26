@@ -29,7 +29,9 @@ function ItemListCount(props: any) {
                 <FormControl className="input-counter" value={cantidad} disabled />
                 <Button className="btn-counter btn-danger mx-1" onClick={handleSuma}>+</Button>
             </div>
-            <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button>
+            {props.stock > 0 ? 
+            <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button>:
+            <Button variant="danger w-100" disabled>Agregar al carrito</Button>}
         </>
     )
 } export default ItemListCount
