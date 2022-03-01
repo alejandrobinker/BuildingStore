@@ -5,6 +5,8 @@ import './ItemCount.css'
 function ItemListCount(props: any) {
 
     const [cantidad, setCantidad] = useState(1);
+    const min = 1
+    const max = props.stock
 
     const handleQty = () => {
         props.action(cantidad)
@@ -26,12 +28,22 @@ function ItemListCount(props: any) {
             <p>Producto (stock: {props.stock})</p>
             <div className="d-flex mb-3">
                 <Button className="btn-counter btn-danger mx-1" onClick={handleResta}>-</Button>
-                <FormControl className="input-counter" value={cantidad} disabled />
+                <FormControl
+                    className="input-counter" value={cantidad} type="number" onChange={(e) => {
+                        let value = (e.target.value)
+                        if (+value > max) {
+                            value = max
+                        }
+                        if (+value < min || value === "") {
+                            value =  min.toString()
+                        }
+                        setCantidad(+value)
+                    }} />
                 <Button className="btn-counter btn-danger mx-1" onClick={handleSuma}>+</Button>
             </div>
-            {props.stock > 0 ? 
-            <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button>:
-            <Button variant="danger w-100" disabled>Agregar al carrito</Button>}
+            {props.stock > 0 ?
+                <Button onClick={handleQty} variant="danger w-100">Agregar al carrito</Button> :
+                <Button variant="danger w-100" disabled>Agregar al carrito</Button>}
         </>
     )
 } export default ItemListCount

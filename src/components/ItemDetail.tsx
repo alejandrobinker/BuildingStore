@@ -21,7 +21,7 @@ function ItemDetail({ item }: any) {
 
     return (
         <div className="row p-3 itemDetail">
-            <div className="col-8 text-center">
+            <div className="col-8 text-center m-auto">
                 <img className="img-fluid w-75" src={item.img} alt="" />
             </div>
             <div className="col-4 aside px-3 py-4 d-flex flex-column justify-content-around">
