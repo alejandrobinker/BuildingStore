@@ -1,0 +1,13 @@
+.cart-container {
+    padding-top: 6rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.cart-list {
+    background-color: white;
+}
+
+.id-order {
+    padding-top: 6rem;
+}

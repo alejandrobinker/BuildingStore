@@ -4,7 +4,7 @@ import Cart from "../interfaces/cart";
 export type ContextProps = {
     cart: Cart[]
     addToCart: (cantidad: number, item: any) => void
-    removeFromCart: (id: number) => void
+    removeFromCart: (id: string) => void
     clearCart: () => void
     cartQty: () => number
     cartTotal: () => number
@@ -30,7 +30,7 @@ function CartProvider({ children }: props) {
         }
     };
 
-    const removeFromCart = (id: number) => {
+    const removeFromCart = (id: string) => {
         setCart(cart.filter((producto) => producto.id !== id));
     }
 

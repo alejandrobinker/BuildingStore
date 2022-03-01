@@ -1,5 +1,5 @@
 export default interface Cart {
-    id: number
+    id: string
     title: string
     descripcion: string
     precio: number

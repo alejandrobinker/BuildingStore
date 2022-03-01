@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, doc, documentId, getDoc, getDocs, increment, query, updateDoc, where } from "firebase/firestore"
 import { db } from "../firebase"
 
 export async function getAllItems(): Promise<any[]> {
@@ -39,6 +39,23 @@ export async function postItem(producto: any) {
     try {
         const collectionRef = collection(db, "productos")
         await addDoc(collectionRef, producto)
+    } catch (error: any) {
+        throw error
+    }
+}
+
+export async function updateStock(productId: string, cantidad: number) {
+    try {
+        const itemRef = doc(db, "productos", productId)
+        const snapshot = await getDoc(itemRef)
+        const product = snapshot.data()
+        if (product?.stock < cantidad) {
+            return
+        } else {
+            await updateDoc(itemRef, {
+                stock: increment(-cantidad)
+            })
+        }
     } catch (error: any) {
         throw error
     }
