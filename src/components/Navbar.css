@@ -1,10 +1,12 @@
 .navbar-custom {
     background-color: white;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, .1);
+    font-size: 20px;
 }
 
 .dropdown-menu[data-bs-popper] {
     margin-top: 0;
+    left: -100px;
 }
 
 .nav-link:after {
@@ -13,4 +15,8 @@
 
 .cart-link {
     position: relative;
+}
+
+.login-button{
+    width: 20px;
 }

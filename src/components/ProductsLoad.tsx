@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Alert, Button, Form, Spinner } from "react-bootstrap"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { postItem } from "../services/products"
 import "./ProductsLoad.css"
+import { AuthContext } from "./AuthContext"
 
 function ProductsLoad() {
 
@@ -13,7 +14,9 @@ function ProductsLoad() {
         precio: "",
         stock: ""
     }
-
+    
+    const [loaded, setLoaded] = useState(false)
+    const { user } = useContext(AuthContext)
     const [fields, setFields] = useState(initialFields)
     const [productImage, setProductImage] = useState<any>()
     const [error, setError] = useState(false)
@@ -67,49 +70,72 @@ function ProductsLoad() {
         setFields(initialFields)
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoaded(true);
+        }, 2000);
+    }, []);
+
+    if (loaded === false) {
+        return (
+            <div className="loading ps-3">
+                <p>Cargando...</p>
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden"></span>
+                </Spinner>
+            </div>
+        )
+    }
+
     return (
-        <div className="productsLoad-container px-5">
-            <Form>
-                {error && <Alert variant="danger">Datos inválidos</Alert>}
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="title">Titulo</Form.Label>
-                    <Form.Control id="title" name="title" onChange={handleChange} value={fields.title} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicSelect">
-                    <Form.Label>Seleccioná una categoría</Form.Label>
-                    <Form.Control
-                        as="select"
-                        name="categoria"
-                        onChange={handleChange}
-                        placeholder="Categoría"
-                    >
-                        <option hidden selected>Categoría</option>
-                        <option value="construccion">Construcción</option>
-                        <option value="plomeria">Plomería</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="descripcion">Descripción</Form.Label>
-                    <Form.Control id="descripcion" name="descripcion" as="textarea" rows={3} onChange={handleChange} value={fields.descripcion} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="img">Imagen</Form.Label>
-                    <Form.Control id="img" name="img" type="file" onChange={handleImgChange} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="precio">Precio</Form.Label>
-                    <Form.Control type="number" id="precio" name="precio" onChange={handleChange} value={fields.precio} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="precio">Stock</Form.Label>
-                    <Form.Control type="number" id="stock" name="stock" onChange={handleChange} value={fields.stock} />
-                </Form.Group>
-                <Button variant={isAdding ? "success" : "danger"} onClick={postProduct}>
-                    {isAdding ? <div>Guardando... <Spinner animation="border" role="status">
-                        <span className="visually-hidden"></span>
-                    </Spinner></div> : "Agregar"}
-                </Button>
-            </Form>
-        </div>
+        <>
+            {user ?
+                <div className="productsLoad-container px-5" >
+                    <Form>
+                        {error && <Alert variant="danger">Datos inválidos</Alert>}
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="title">Titulo</Form.Label>
+                            <Form.Control id="title" name="title" onChange={handleChange} value={fields.title} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicSelect">
+                            <Form.Label>Seleccioná una categoría</Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="categoria"
+                                onChange={handleChange}
+                                placeholder="Categoría"
+                            >
+                                <option hidden selected>Categoría</option>
+                                <option value="construccion">Construcción</option>
+                                <option value="plomeria">Plomería</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="descripcion">Descripción</Form.Label>
+                            <Form.Control id="descripcion" name="descripcion" as="textarea" rows={3} onChange={handleChange} value={fields.descripcion} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="img">Imagen</Form.Label>
+                            <Form.Control id="img" name="img" type="file" onChange={handleImgChange} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="precio">Precio</Form.Label>
+                            <Form.Control type="number" id="precio" name="precio" onChange={handleChange} value={fields.precio} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="precio">Stock</Form.Label>
+                            <Form.Control type="number" id="stock" name="stock" onChange={handleChange} value={fields.stock} />
+                        </Form.Group>
+                        <Button variant={isAdding ? "success" : "danger"} onClick={postProduct}>
+                            {isAdding ? <div>Guardando... <Spinner animation="border" role="status">
+                                <span className="visually-hidden"></span>
+                            </Spinner></div> : "Agregar"}
+                        </Button>
+                    </Form>
+                </div> :
+                <div className="access ps-3">
+                    <h2>Access denied</h2>
+                </div>}
+        </>
     )
 } export default ProductsLoad
