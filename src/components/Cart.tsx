@@ -67,7 +67,7 @@ function Cart() {
     }
 
     if (orderId !== "") {
-        return <div className="id-order ps-3"><h2>Id de compra: {orderId}</h2></div>
+        return <div className="id-order ps-3"><h2>Tu Id de compra: {orderId}</h2></div>
     }
 
     return (

@@ -29,7 +29,6 @@ function AuthProvider({ children }: props) {
                 setUser(null)
             }
         })
-        console.log(user)
         return userChange
     }, [])
 
