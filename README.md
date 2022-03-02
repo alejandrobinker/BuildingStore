@@ -1,6 +1,7 @@
 # BuildingStore
 
 This project was made with:
+
 -React Js + TypeScript
 -React Bootstrap
 -Firebase
