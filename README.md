@@ -2,8 +2,8 @@
 
 This project was made with:
 
--React Js + TypeScript
--React Bootstrap
+-React Js + TypeScript\
+-React Bootstrap\
 -Firebase
 
 Run `npm install` to download dependencies
