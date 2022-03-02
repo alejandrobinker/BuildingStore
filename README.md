@@ -8,6 +8,10 @@ This project was made with:
 
 Run `npm install` to download dependencies
 
+### Env File config.
+
+In the root folder, create a .env file with the same keys as the firebase config. Fill the keys with the values provided by the owner.
+
 ## Available Scripts
 
 In the project directory, you can run:
