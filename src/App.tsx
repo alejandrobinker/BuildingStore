@@ -5,7 +5,7 @@ import ItemDetailContainer from './components/itemsDetail/ItemDetailContainer';
 import ProductListContainer from './components/productList/ProductListContainer';
 import Cart from './components/cart/Cart';
 import ProductsLoad from './components/private/ProductsLoad';
-import NotFound from './components/NotFound';
+import NotFound from './layout/NotFound';
 
 function App() {
 
