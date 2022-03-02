@@ -1,5 +1,17 @@
 .products-container {
-    padding-top: 8rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-top: 4rem;
+}
+
+@media (min-width: 768px) {
+    .products-container {
+        padding-top: 8rem;
+        padding-left: 6rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 639px) {
+    .products-container {
+        text-align: center;
+    }
 }

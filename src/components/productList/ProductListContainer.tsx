@@ -47,9 +47,9 @@ function ProductListContainer() {
 
     return (
         <div className="products-container row">
-            <div className="col-2"></div>
-            <div className="col-10">
-                <h1 className="ms-3">{title}</h1>
+            <div className="d-none d-md-block col-md-2"><h3>Filtros</h3></div>
+            <div className="col-12 col-md-10">
+                <h1 className="ms-sm-3">{title}</h1>
                 {loaded ?
                     <>
                         <ProductList items={items} />

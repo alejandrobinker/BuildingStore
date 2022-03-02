@@ -124,7 +124,7 @@ function Cart() {
                     </Form>
                 </div>
                 :
-                <div> <Link to="/"><h1>Agrega productos en la tienda</h1> </Link> </div>}
+                <div> <Link to="/"><h1>Agregá productos en la tienda</h1> </Link> </div>}
         </div>
     )
 }
