@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import Cart from "../interfaces/cart";
+import Cart from "../../interfaces/cart";
 
 export type ContextProps = {
     cart: Cart[]

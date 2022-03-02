@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Producto from "../interfaces/productoDTO";
-import { getAllItems, getItemsByCategory } from "../services/products";
+import Producto from "../../interfaces/productoDTO";
+import { getAllItems, getItemsByCategory } from "../../services/products";
 import ProductList from "./ProductList";
 import "./ProductListContainer.css"
 

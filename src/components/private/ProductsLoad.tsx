@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import { Alert, Button, Form, Spinner } from "react-bootstrap"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
-import { postItem } from "../services/products"
+import { postItem } from "../../services/products"
 import "./ProductsLoad.css"
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from "../auth/AuthContext"
 
 function ProductsLoad() {
 

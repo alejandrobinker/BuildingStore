@@ -6,8 +6,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import "./Cart.css"
 import { Alert, Button, Form, Spinner } from "react-bootstrap"
 import { addDoc, collection, Timestamp } from "firebase/firestore"
-import { updateStock } from "../services/products"
-import { db } from "../firebase"
+import { updateStock } from "../../services/products"
+import { db } from "../../firebase"
 
 function Cart() {
 

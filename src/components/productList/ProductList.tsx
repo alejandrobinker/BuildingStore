@@ -1,4 +1,4 @@
-import Item from "./Item"
+import Item from "../items/Item"
 
 function ProductList(props: any) {
 

@@ -1,13 +1,13 @@
 import { useContext } from "react"
-import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap"
+import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faCog } from '@fortawesome/free-solid-svg-icons'
-import { CartContext } from "./CartContext"
-import CartWidget from "./CartWidget"
+import { CartContext } from "../components/cart/CartContext"
+import CartWidget from "../components/cart/CartWidget"
 import googleLogo from "../assets/googleLogo.png"
 import "./Navbar.css"
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from "../components/auth/AuthContext"
 
 function HeaderNavbar() {
 

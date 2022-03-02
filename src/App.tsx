@@ -1,10 +1,10 @@
 import './App.css';
-import HeaderNavbar from './components/Navbar';
+import HeaderNavbar from './layout/Navbar';
 import { Route, Routes } from 'react-router-dom';
-import ItemDetailContainer from './components/ItemDetailContainer';
-import ProductListContainer from './components/ProductListContainer';
-import Cart from './components/Cart';
-import ProductsLoad from './components/ProductsLoad';
+import ItemDetailContainer from './components/itemsDetail/ItemDetailContainer';
+import ProductListContainer from './components/productList/ProductListContainer';
+import Cart from './components/cart/Cart';
+import ProductsLoad from './components/private/ProductsLoad';
 import NotFound from './components/NotFound';
 
 function App() {

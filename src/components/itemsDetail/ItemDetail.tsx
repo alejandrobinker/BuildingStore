@@ -1,12 +1,12 @@
 import ItemCount from "./ItemCount";
 import { useContext, useState } from "react";
-import credito from "../assets/credito.png"
+import credito from "../../assets/credito.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import "./ItemDetail.css"
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../cart/CartContext";
 
 
 function ItemDetail({ item }: any) {

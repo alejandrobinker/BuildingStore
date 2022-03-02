@@ -4,8 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import CartProvider from './components/CartContext';
-import AuthProvider from './components/AuthContext';
+import CartProvider from './components/cart/CartContext';
+import AuthProvider from './components/auth/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>

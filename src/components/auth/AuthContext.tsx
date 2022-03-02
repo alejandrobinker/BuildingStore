@@ -1,7 +1,7 @@
 import { signInWithRedirect, User } from "firebase/auth"
 import { createContext, useEffect, useState } from "react"
-import { auth, googleProvider } from "../firebase"
-import { adminCheck } from "../services/logIn"
+import { auth, googleProvider } from "../../firebase"
+import { adminCheck } from "../../services/logIn"
 
 type ContextProps = {
     user: User | null
